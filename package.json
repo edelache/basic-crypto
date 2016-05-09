@@ -1,0 +1,27 @@
+{
+  "name": "basic-crypto",
+  "version": "1.0.0",
+  "description": "basic crypto wrapper, with sensible defaults",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "repository": "leonardodino/basic-crypto",
+  "keywords": [
+    "crypto",
+    "abstraction",
+    "basic",
+    "simple",
+    "hash",
+    "encrypt",
+    "decrypt"
+  ],
+  "engines" : {
+    "node" : ">=4.0.0"
+  },
+  "author": "Leonardo Dino",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "^4.5.1"
+  }
+}
