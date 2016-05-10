@@ -1,6 +1,6 @@
 {
   "name": "basic-crypto",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "basic crypto wrapper, with sensible defaults",
   "main": "index.js",
   "scripts": {
