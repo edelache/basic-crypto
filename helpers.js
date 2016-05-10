@@ -34,7 +34,7 @@ function pseudoKeyStrech(key, len){
 
 	// for use with user supplied passwords, use real key stretching:
 	// pbkdf2, bcrypt, scrypt, etc.
-	return newBuffer(truncateTo(len)(crypto.createHash('sha256').update(key).digest('hex')))
+	return newBuffer(truncateTo(len)(crypto.createHash('sha256').update(key).digest('base64')))
 }
 
 function fallback(v, d){
