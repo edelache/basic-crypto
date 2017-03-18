@@ -11,7 +11,7 @@ function label(a, b, c, d){
 	if(arguments.length === 4){
 		return '['+a+'] '+b+' ('+c+') -- '+d
 	}
-	throw error('LABEL: wrong number of arguments')
+	throw new Error('LABEL: wrong number of arguments')
 }
 
 function instantiation(mode, _testName, basicCryptoOptions){
@@ -117,13 +117,12 @@ truncateHMAC.inputs = [
 
 function rejectInvalidHmacSize(mode, _testName, basicCryptoOptions, hmacSize){
 	if(!basicCryptoOptions || !basicCryptoOptions.integrity){return}
-	var plainText = 'abcd😜§±4563'
 	
 	var testName = label(mode, 'reject invalid hmac size', hmacSize, _testName)
 	var instanceOptions = Object.assign({}, basicCryptoOptions, {hmacSize: hmacSize})
 	test(testName, function(t){
 		t.throws(function(){
-			var basicCrypto = new BasicCrypto(instanceOptions)
+			new BasicCrypto(instanceOptions)
 		})
 		t.end()
 	})
@@ -137,7 +136,7 @@ function rejectInvalidOptions(mode, _testName, basicCryptoOptions, optionName, o
 	var testName = label(mode, 'reject invalid options', optionName)
 	test(testName, function(t){
 		t.throws(function(){
-			var basicCrypto = new BasicCrypto(option)
+			new BasicCrypto(option)
 		})
 		t.end()
 	})

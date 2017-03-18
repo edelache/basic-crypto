@@ -65,11 +65,10 @@ function BasicCrypto(_options){
 			encrypted = cipherText + '$' + IV.toString('hex') + (hmac ? ('$' + hmac) : '')
 		}catch (e){
 			error = e
-		}finally{
-			if(!callback &&  error) throw error
-			if(!callback && !error) return encrypted
-			callback(error, encrypted)
 		}
+		if(!callback &&  error) throw error
+		if(!callback && !error) return encrypted
+		return callback(error, encrypted)
 	}
 
 	this.decrypt = function decrypt(cipherText, callback){
@@ -102,11 +101,10 @@ function BasicCrypto(_options){
 			plainText = decryptor.update(cText, 'hex', 'utf8') + decryptor.final('utf8')
 		}catch (e){
 			error = e
-		}finally{
-			if(!callback &&  error) throw error
-			if(!callback && !error) return plainText
-			callback(error, plainText)
 		}
+		if(!callback &&  error) throw error
+		if(!callback && !error) return plainText
+		return callback(error, plainText)
 	}
 
 	return this
