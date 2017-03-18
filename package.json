@@ -16,12 +16,14 @@
     "encrypt",
     "decrypt"
   ],
-  "engines" : {
-    "node" : ">=4.0.0"
+  "engines": {
+    "node": ">=4.0.0"
   },
   "author": "Leonardo Dino",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^3.18.0",
+    "nyc": "^10.1.2",
     "tape": "^4.5.1"
   }
 }
