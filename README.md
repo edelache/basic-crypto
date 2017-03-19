@@ -1,6 +1,9 @@
 # basic-crypto
 
-[![Build](https://travis-ci.org/leonardodino/basic-crypto.svg?branch=master)](http://travis-ci.org/leonardodino/basic-crypto)
+[![npm version][npm-badge]][npm-url]
+[![Build Status][travis-badge]][travis-url]
+[![Coverage Status][coverage-badge]][coverage-url]
+[![Code Climate][codeclimate-badge]][codeclimate-url]
 
 Basic, high-level, opnionated crypto suite. <sup name="anchor0">[0](#footnote0)</sup>
 
@@ -144,3 +147,12 @@ This project is licensed under the MIT license. See the [LICENSE](LICENSE) file 
 <sup name="footnote4">`4`</sup> Unfortunelly this leads to code duplication, as the sync methods can't support it. [↩](#anchor4) <br/>
 <sup name="footnote5">`5`</sup> Syncronous code should be always wraped inside a try-catch block, as any erros are thrown. [↩](#anchor5) <br/>
 <sup name="footnote6">`6`</sup> A fixed key is useful when talking to other processes, or storing the key for later. When not provided a key will be generated randomly on the fly, but it's not possible to access this value, and it's unique in each instantiation. [↩](#anchor6)
+
+[npm-badge]: https://img.shields.io/npm/v/basic-crypto.svg
+[npm-url]: https://www.npmjs.com/package/basic-crypto
+[travis-badge]: https://api.travis-ci.org/leonardodino/basic-crypto.svg
+[travis-url]: https://travis-ci.org/leonardodino/basic-crypto
+[codeclimate-badge]: https://codeclimate.com/github/leonardodino/basic-crypto/badges/gpa.svg
+[codeclimate-url]: https://codeclimate.com/github/leonardodino/basic-crypto
+[coverage-badge]: https://codeclimate.com/github/leonardodino/basic-crypto/badges/coverage.svg
+[coverage-url]: https://codeclimate.com/github/leonardodino/basic-crypto/coverage
