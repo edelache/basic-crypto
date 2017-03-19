@@ -137,7 +137,7 @@ function rejectInvalidOptions(mode, _testName, basicCryptoOptions, optionName, o
 	test(testName, function(t){
 		t.throws(function(){
 			new BasicCrypto(option)
-		})
+		}, /options must be an object or string/ )
 		t.end()
 	})
 }
@@ -201,4 +201,88 @@ instantiations.forEach(function(instantiationMethod){
 			})
 		})
 	})
+})
+
+test('test encryption error handling', function(t){
+	var basicCrypto = new BasicCrypto({integrity: true})
+	var plainText = 'random string'
+	var parts = basicCrypto.encrypt(plainText).split('$')
+	var missingHmac = [parts[0], parts[1]].join('$')
+	var tampered =  [
+		parts[0].split('').reverse().join(''),
+		parts[1],
+		parts[2],
+	].join('$')
+	var invalidhex = parts[0]
+
+	t.throws(function(){
+		basicCrypto.decrypt(missingHmac)
+	}, /Missing HMAC/i, 'Missing HMAC')
+
+	t.throws(function(){
+		basicCrypto.decrypt(tampered)
+	}, /tampered/i, 'Tampered Content')
+
+	t.throws(function(){
+		basicCrypto.decrypt(invalidhex)
+	}, /Invalid hex/i, 'Invalid hex string')
+
+	t.end()
+})
+
+test('encryption - reject invalid input', function(t){
+	var basicCrypto = new BasicCrypto()
+
+	t.throws(function(){
+		basicCrypto.encrypt()
+	}, /TypeError/, 'Missing plaintext')
+
+	t.throws(function(){
+		basicCrypto.encrypt(new Error('plaintext'))
+	}, /TypeError/, 'Invalid plaintext')
+
+	t.end()
+})
+
+test('decryption - reject invalid input', function(t){
+	var basicCrypto = new BasicCrypto({integrity: true})
+	var parts = basicCrypto.encrypt('plaintext').split('$')
+
+	t.throws(function(){
+		var missingHmac = [parts[0], parts[1]].join('$')
+		basicCrypto.decrypt(missingHmac)
+	}, /Missing HMAC/i, 'Missing HMAC')
+
+	t.throws(function(){
+		var tampered =  [
+			parts[0].split('').reverse().join(''),
+			parts[1],
+			parts[2],
+		].join('$')
+		basicCrypto.decrypt(tampered)
+	}, /tampered/i, 'Tampered Content')
+
+	t.throws(function(){
+		var hmacLengthMismatch = [
+			parts[0],
+			parts[1],
+			parts[2].substring(1),
+		].join('$')
+		basicCrypto.decrypt(hmacLengthMismatch)
+	}, /tampered/i, 'hmac length mismatch')
+
+	t.throws(function(){
+		var invalidhex = parts[0]
+		basicCrypto.decrypt(invalidhex)
+	}, /Invalid hex/i, 'Invalid hex string')
+
+	t.throws(function(){
+		basicCrypto.decrypt()
+	}, /TypeError/i, 'Missing cyphertext')
+
+	t.throws(function(){
+		basicCrypto.decrypt(new Error('cyphertext'))
+	}, /TypeError/i, 'Invalid cyphertext')
+
+	t.end()
 })
