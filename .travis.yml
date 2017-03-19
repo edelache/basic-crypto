@@ -7,3 +7,6 @@ node_js:
   - "5.0"
   - "4"
   - "4.0"
+addons:
+  code_climate:
+    repo_token: 7a0207c7c0829fa719ced9a4099dc26cd4f63700434bd391e5ae598f39b0e0dd
