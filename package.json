@@ -4,6 +4,7 @@
   "description": "basic crypto wrapper, with sensible defaults",
   "main": "index.js",
   "scripts": {
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov > lcov.info",
     "test": "node ./test.js"
   },
   "repository": "leonardodino/basic-crypto",
