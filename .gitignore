@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
-npm-debug.log
+*.log
 ./coverage
 .nyc_output
 lcov.info
+package-lock.json
+yarn.lock
