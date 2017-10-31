@@ -225,7 +225,7 @@ test('test encryption error handling', function(t){
 
 	t.throws(function(){
 		basicCrypto.decrypt(invalidhex)
-	}, /Invalid hex/i, 'Invalid hex string')
+	}, /Invalid hex|Missing HMAC/i, 'Invalid hex string')
 
 	t.end()
 })
@@ -274,7 +274,7 @@ test('decryption - reject invalid input', function(t){
 	t.throws(function(){
 		var invalidhex = parts[0]
 		basicCrypto.decrypt(invalidhex)
-	}, /Invalid hex/i, 'Invalid hex string')
+	}, /Invalid hex|Missing HMAC/i, 'Invalid hex string')
 
 	t.throws(function(){
 		basicCrypto.decrypt()
